@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from 'react'
+import { Link } from 'react-router-dom';
 import Add from "../img/addAvatar.png";
 import '../../src/styles.scss'
 
@@ -20,9 +21,13 @@ const register = () => {
           <button disabled="">Sign up</button>
 
         </form>
+        <p>
+          You do have an account? <Link to="/register">Login</Link>
+        </p>
   
       </div>
-    </div>  )
+    </div>  
+    )
 }
 
 export default register
