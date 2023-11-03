@@ -8,13 +8,9 @@ const Search = () => {
         <input
           type="text"
           placeholder="Find a user"
-          onKeyDown=""
-          onChange=""
-          value=""
         />
-      </div>  
-  
-        <div className="userChat" onClick="">
+      </div> 
+        <div className="userChat">
           <img src={profileImage} alt="" />
           <div className="userChatInfo">
             <span>Anass</span>
