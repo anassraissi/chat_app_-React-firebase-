@@ -7,7 +7,17 @@ const Messages = () => {
     <div>
             <Message></Message>
             <Message></Message>
-
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+            <Message></Message>
+    
     </div>
   )
 }

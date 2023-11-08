@@ -4,16 +4,22 @@ import { auth } from "../Firebase";
 export const AuthContext=createContext();
 
 export const AuthContextPr=({children})=>{
-    const [currentUser,setCurrentUser]=useState();
+    const [currentUser,setCurrentUser]=useState('false');
     useEffect(()=>{
-            onAuthStateChanged(auth,(user)=>{
+          const unsub = onAuthStateChanged(auth,(user)=>{
                 setCurrentUser(user);
                 console.log(user);
             })
-    },[]);
-
-    <AuthContext.Provider value={{currentUser}}>
+            return ()=>{
+                unsub();
+            }
+    } 
+    ,[]);
+return (
+            <AuthContext.Provider value={{currentUser}}>
             {children}
-    </AuthContext.Provider>
+            </AuthContext.Provider>
+)
+  
 
 }

@@ -6,14 +6,11 @@ const Message = () => {
     <div>
       <div className="message owner">
       <div className="messageInfo">
-        <img 
-          src={profileImg}
-          alt=""
-        />
+        <img src=''/>
         <span>just now</span>
       </div>
       <div className="messageContent">
-        <p>Anass</p>
+        <p></p>
       </div>
     </div>   
 

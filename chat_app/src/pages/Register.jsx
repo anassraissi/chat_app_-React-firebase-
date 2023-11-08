@@ -19,7 +19,7 @@ const Register = () => {
     const displayName=e.target[0].value;  
     const email=e.target[1].value;
     const password=e.target[2].value;
-    const file=e.target[3].files[0].name;
+    const file = e.target[3].files[0];
     console.log(displayName,email,password,file);
     try{
      const res= await createUserWithEmailAndPassword(auth, email, password)
@@ -44,6 +44,9 @@ const Register = () => {
               email,
               photoURL: downloadURL
         });
+            //create empty user chats on firestore
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            Navigate("/");
       });
     }
 );
@@ -71,7 +74,7 @@ const Register = () => {
             <span>Add an avatar</span>
           </label>
           <button>Sign up</button>
-          {err && <span>something went wrong </span>} 
+          {err && <span>something went wrong </span>}   
 
         </form>
         <p>
