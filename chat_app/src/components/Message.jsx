@@ -1,7 +1,8 @@
 import React from 'react'
 import profileImg from '../img/anass.png'
 
-const Message = () => {
+const Message = (msg) => {
+  console.log(msg)
   return (
     <div>
       <div className="message owner">
