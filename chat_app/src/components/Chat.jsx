@@ -5,12 +5,12 @@ import More from '../img/more.png'
 import Messages from './Messages'
 import Input from './Input'
 import { ChatContext } from '../context/ChatContext'
+import { AuthContext } from '../context/AuthContext'
 
 
 
 const Chat = () => {
   const {data}=useContext(ChatContext);
-  console.log(data)
   return (
     <div className='chat'>
       <span>{data?.user.displayName}</span>

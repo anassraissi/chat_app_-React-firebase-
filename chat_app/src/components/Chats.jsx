@@ -11,6 +11,7 @@ const Chats = () => {
   const {currentUser}=useContext(AuthContext);
   const {dispatch}=useContext(ChatContext)
   const [chats,setChats]=useState();
+  // console.log(currentUser.uid);
   let array;
   useEffect(() => {
     const getChats = () => {
@@ -29,7 +30,7 @@ const Chats = () => {
   const handleSelect=(data)=>{
       dispatch({type:'CHANGE_USER',payload:data})   
   }
-console.log(chats)
+// console.log(chats)
   return (
       <div className='chats'>
         {chats && chats?.map((chat) => (

@@ -3,10 +3,11 @@ import Message from './Message'
 import { ChatContext } from '../context/ChatContext';
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../Firebase'
+import { AuthContext } from '../context/AuthContext';
 
 const Messages = () => {
   const {data}=useContext(ChatContext);
-  const[message,setMessage]=useState([]);
+  const[message,setMessage]=useState([""]);
   useEffect(()=>{
     const unsub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
       setMessage(doc.data())});
@@ -16,13 +17,9 @@ const Messages = () => {
     },[data.chatId])
     console.log(message)
   return (
-    <div>
-      {/* {Messages.map((msg)=>(
-            <Message message={msg}></Message>
-
+    <div className='messages'>
+   {/* {message?.map((msg) => (
       ))} */}
-
-    
     </div>
   )
   }
