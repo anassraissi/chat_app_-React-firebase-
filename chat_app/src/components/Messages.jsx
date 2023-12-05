@@ -6,21 +6,27 @@ import { db } from '../Firebase'
 import { AuthContext } from '../context/AuthContext';
 
 const Messages = () => {
-  const {data}=useContext(ChatContext);
-  const[message,setMessage]=useState([""]);
-  useEffect(()=>{
-    const unsub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      setMessage(doc.data())});
-      return()=>{
-        unsub();
-      }
-    },[data.chatId])
-    console.log(message)
+  const [messages, setMessages] = useState([]);
+  const { data } = useContext(ChatContext);
+  
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
+      doc.exists() && setMessages(doc.data().messages);
+      console.log('Messages')
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [data.chatId]);
+
+  // console.log(messages)
   return (
-    <div className='messages'>
-   {/* {message?.map((msg) => (
-      ))} */}
+    <div className='messages'>  
+       {messages?.map((m) => (
+        <Message message={m} key={m?.id} />
+      ))}
     </div>
   )
-  }
+}
 export default Messages

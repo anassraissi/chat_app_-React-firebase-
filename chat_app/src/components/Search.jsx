@@ -37,7 +37,6 @@ const Search = ()=> {
       }
     }
     const handelSelect=async()=>{
-      console.log(user);
     dispatch({type:'CHANGE_USER',payload:user})   
     console.log('yess');
       //check if the group(chats in firestore) exists, if not create
@@ -96,7 +95,7 @@ const Search = ()=> {
       </div> 
       {err && <span>user not found</span>}
       {user && 
-        <div className="userChat" onClick={handelSelect}>
+        <div className="userChat" onClick={()=>handelSelect()}>
           <img src={user.photoURL} alt="" />
           <div className="userChatInfo">
             <span>{user.displayName}</span>

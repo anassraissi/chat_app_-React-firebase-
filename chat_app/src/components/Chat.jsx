@@ -6,25 +6,29 @@ import Messages from './Messages'
 import Input from './Input'
 import { ChatContext } from '../context/ChatContext'
 import { AuthContext } from '../context/AuthContext'
+import '../../src/styles.scss'
+
 
 
 
 const Chat = () => {
-  const {data}=useContext(ChatContext);
+  const { data } = useContext(ChatContext);
   return (
     <div className='chat'>
-      <span>{data?.user.displayName}</span>
-         <div className="chat">
-      <div className="chatInfo">
-        <div className="chatIcons">
-          <img src={Cam} alt="" />
-          <img src={Add} alt="" />
-          <img src={More} alt="" />
+      <div className="chat">
+        <div className="chatInfo">
+          {data.user.displayName &&
+            <span>{data?.user.displayName}     <img className='img_chat' src={data?.user.photoURL} /></span>
+          }
+          <div className="chatIcons">
+            <img src={Cam} alt="" />
+            <img src={Add} alt="" />
+            <img src={More} alt="" />
+          </div>
         </div>
       </div>
-    </div>
-    <Messages></Messages>
-    <Input/>
+      <Messages></Messages>
+      <Input />
     </div>
   )
 }

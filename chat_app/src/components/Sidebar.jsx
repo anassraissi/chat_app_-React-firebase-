@@ -1,8 +1,6 @@
-import React, { useContext } from 'react'
 import Navbar from '../components/Navbar';
 import Search from '../components/Search';
 import Chats from '../components/Chats';
-import { AuthContext } from '../context/AuthContext';
 
 
 

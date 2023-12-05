@@ -11,15 +11,16 @@ import { getFirestore} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC4GbjHUaVE9SIXH0HWmsgrwztR66mTZ9M",
-  authDomain: "chat-15bc5.firebaseapp.com",
-  projectId: "chat-15bc5",
-  storageBucket: "chat-15bc5.appspot.com",
-  messagingSenderId: "862095782648",
-  appId: "1:862095782648:web:a8cb6fb43358b8a3a9010d"
+  apiKey: "AIzaSyAJ_4dk1akKcTNk3KZL5pu7uRuH4n9B0QQ",
+  authDomain: "appp-c2aa2.firebaseapp.com",
+  projectId: "appp-c2aa2",
+  storageBucket: "appp-c2aa2.appspot.com",
+  messagingSenderId: "655063125975",
+  appId: "1:655063125975:web:a9cc45f198b8ecf1784592"
 };
+
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth=getAuth();
 export const storage=getStorage();
 export const db=getFirestore();

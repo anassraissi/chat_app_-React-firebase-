@@ -11,17 +11,17 @@ const Chats = () => {
   const {currentUser}=useContext(AuthContext);
   const {dispatch}=useContext(ChatContext)
   const [chats,setChats]=useState();
-  // console.log(currentUser.uid);
+  // console.log(currentUser.uid);s
   let array;
   useEffect(() => {
     const getChats = () => {
      // Set up a real-time listener for changes to the userChats document
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
         array=(doc.data());
-        setChats(Object.entries(array))
+        if(array){setChats(Object.entries(array))}
       });
       return () => {      // Unsubscribe from the listener when the component unmounts or when currentUser.uid changes
-        unsub();
+        unsub();    // mhi listen 3la firebase mnin tlgha lcomponents
       };  
     };
   // Check if currentUser.uid exists before calling getChats
@@ -30,10 +30,10 @@ const Chats = () => {
   const handleSelect=(data)=>{
       dispatch({type:'CHANGE_USER',payload:data})   
   }
-// console.log(chats)
+// console.log('chats '+chats)
   return (
       <div className='chats'>
-        {chats && chats?.map((chat) => (
+        {chats && chats?.sort((a,b)=>b[1].date-a[1].date).map((chat) => (
         <div className="userChat" key={chat[1].userInfo.uid} onClick={()=>handleSelect(chat[1].userInfo)}>  
            <img src={chat[1].userInfo.photoURL} alt="" />
           <div className="userChatInfo">
