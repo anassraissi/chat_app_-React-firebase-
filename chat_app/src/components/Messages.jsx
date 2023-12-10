@@ -11,11 +11,16 @@ const Messages = () => {
   
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      doc.exists() && setMessages(doc.data().messages);
-      console.log('Messages')
-    });
+   if(doc.exists()){
+    const allMessages = doc.data().messages;
+    const last10Messages = allMessages.slice(-10);
+    setMessages(last10Messages);
 
-    return () => {
+   }
+    });
+    // console.log(messages)
+
+    return () => {  
       unSub();
     };
   }, [data.chatId]);

@@ -1,16 +1,18 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import profileImg from '../img/anass.png'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext'
 import { ref } from 'firebase/storage'
 
 const Message = ({message}) => {
-  const {currentUser}=useContext(AuthContext)
+  const {currentUser}=useContext(AuthContext) 
   const {data}=useContext(ChatContext);
-  const ref = useRef();
-  useEffect(()=>{
-    ref.current?.scrollIntoView({ behavior: "smooth" });  // tscoller ltaht mnin tbadal tsafat message wla yji message
-  },[message])
+  const ref = useRef(null);
+  useEffect(()=>{ 
+    ref?.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  })
 
   function getDaysOfMonthForThisWeek() {
     const today = new Date();
@@ -86,7 +88,7 @@ else{
         />
         {time && <span>{time}</span> }
       </div>
-      <div className="messageContent">
+      <div  className="messageContent">
         <p>{message.text}</p>
         {message.img && <img src={message.img} alt="" />}
       </div>

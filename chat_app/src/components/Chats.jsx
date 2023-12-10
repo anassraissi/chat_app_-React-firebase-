@@ -13,6 +13,7 @@ const Chats = () => {
   const [chats,setChats]=useState();
   // console.log(currentUser.uid);s
   let array;
+
   useEffect(() => {
     const getChats = () => {
      // Set up a real-time listener for changes to the userChats document

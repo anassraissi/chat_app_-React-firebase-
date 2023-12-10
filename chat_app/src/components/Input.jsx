@@ -36,45 +36,31 @@ const Input = () => {
     }
     
     const currentDateArray = formatCurrentDate();
-
+    console.log(currentDateArray);
     
 
     if (img) {
       const storageRef = ref(storage, uuid());
-      //ref(storage, uuid()): This creates a reference to a specific location in Firebase Storage.
-      // The ref function takes the storage instance and a path or identifier for the specific file.
-      // In this case, it seems to be using a UUID as the file identifier.
-
+      
+      // Create the upload task
       const uploadTask = uploadBytesResumable(storageRef, img);
-      //       //uploadBytesResumable: This function is part of the Firebase Storage SDK. 
-      //       // It creates an upload task for the specified file bytes (img) to the specified storage reference (storageRef).
-      //       // The "Resumable" part implies that the upload can be paused and resumed, which can be useful for large files or situations where the 
-      //       // network connection may be unreliable.
-
-      uploadTask.on(
-        (error) => {
-          //TODO:Handle Error
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-              // Get the date of the message
-
-
-            // Format the date as "Monday at 12:36"
-
-
-            await updateDoc(doc(db, "chats", data.chatId), {
-              messages: arrayUnion({
-                id: uuid(),
-                text,
-                senderId: currentUser.uid,
-                date: currentDateArray,
-                img: downloadURL,
-              }),
-            });
+    
+      // Use the upload task's promise to handle the completion
+      uploadTask.then(() => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          await updateDoc(doc(db, "chats", data.chatId), {
+            messages: arrayUnion({
+              id: uuid(),
+              text,
+              senderId: currentUser.uid,
+              date: currentDateArray,
+              img: downloadURL,
+            }),
           });
-        }
-      );
+        });
+      }).catch((error) => {
+        console.error("Error during upload:", error);
+      });
     }
     else {
       await updateDoc(doc(db, "chats", data.chatId), {
