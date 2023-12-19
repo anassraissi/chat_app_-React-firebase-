@@ -1,5 +1,5 @@
 import React from "react";
-
+import  '../style.css'
 const ConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
   if (!isOpen) return null;
 
@@ -11,7 +11,7 @@ const ConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
         <button onClick={onCancel}>No</button>
       </div>
     </div>
-  );
+  );  
 };
 
 export default ConfirmationModal;
