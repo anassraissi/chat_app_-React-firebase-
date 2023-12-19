@@ -5,7 +5,6 @@ import More from '../img/more.png'
 import Messages from './Messages'
 import Input from './Input'
 import { ChatContext } from '../context/ChatContext'
-import { AuthContext } from '../context/AuthContext'
 import '../../src/styles.scss'
 
 
@@ -13,6 +12,7 @@ import '../../src/styles.scss'
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
+  
   return (
     <div className='chat'>
       <div className="chat">
